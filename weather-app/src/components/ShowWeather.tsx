@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getExtendedWeather} from '../actions/index'
+import store from '../store/index'
+import logo from '../logo.svg'
+import './weather.css'
 
 const ShowWeather: any = (weatherObj:any) => {
+
      const fahrenheit = (weatherObj.data.main.temp * 1.8 - 459.67).toFixed(2);
      const celsius = (weatherObj.data.main.temp - 273.15).toFixed(2);
+
+     const pos = useSelector((state: any) => state.weather.position);
+    //const lat = useSelector((state: any) => state.weather.position[1]);
+    
+     //console.log("pos:::::::", pos)
+    
+     //const [extendedWeather, setExtendedWeather] = ('');
+    //  const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getExtendedWeather(lon))
+    //  }, []);
 
     // console.log('weatherObj.dataaaaaaaaaaaaaaa', weatherObj.data.weatherObj.data.main)
     return(
@@ -20,8 +38,9 @@ const ShowWeather: any = (weatherObj:any) => {
             <p>humidity: {weatherObj.data.main.humidity}</p>
             <p>pressure: {weatherObj.data.main.pressure}</p>
             <p>wind: {weatherObj.data.wind.speed} m/s</p>
+
         </div>
-    )
+    );
 }
 
 export default ShowWeather;

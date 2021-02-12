@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {getWeather, setLoading} from '../actions/index'
+import './weather.css'
 
 const Search:any = () => {
 
@@ -22,11 +23,12 @@ const Search:any = () => {
     }
 
     return(
-        <div>
+        <div className='search'>
+            <h2>Search by city name: </h2>
             <form onSubmit={submitHandler}>
                 <input 
                     type='text'
-                    placeholder='search by city name'
+                    placeholder='city'
                     value={city}
                     onChange={searchHandler}
                 />

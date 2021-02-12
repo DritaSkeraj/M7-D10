@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.content{
+  z-index: 10000;
+  background: rgba(224, 224, 224, 0.342);
+  width: 50%;
+  margin: 0 auto;
+  height: 85%;
+  vertical-align: middle;
+  margin-top: 5%;
+}

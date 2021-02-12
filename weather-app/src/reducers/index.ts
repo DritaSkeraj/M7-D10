@@ -12,6 +12,16 @@ export default (state = initialState, action:any): any => {
                 loading: false,
                 error: ''
             }
+        case 'SET_POSITION':
+            return {
+                ...state,
+                position: [...action.payload]
+            }
+        case 'SET_EXTENDED_WEATHER':
+            return {
+                ...state,
+                extended: action.payload
+            }
         case 'SET_LOADING':
             return {
                 ...state,
