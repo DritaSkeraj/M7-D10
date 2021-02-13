@@ -7,25 +7,21 @@ import './weather.css'
 
 const ShowWeather: any = (weatherObj:any) => {
 
-     const fahrenheit = (weatherObj.data.main.temp * 1.8 - 459.67).toFixed(2);
-     const celsius = (weatherObj.data.main.temp - 273.15).toFixed(2);
+    const celsius = (weatherObj.data.main.temp - 273.15).toFixed(2);
 
-     const pos = useSelector((state: any) => state.weather.position);
-    //const lat = useSelector((state: any) => state.weather.position[1]);
+    const pos = useSelector((state: any) => state.weather.position);
     let lon = 0
     let lat = 0
     if(pos){
          lon = pos[0];
          lat = pos[1];
-        console.log("lon:::::::", lon, "\nlat::::::::", lat);
     }
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getExtendedWeather(lon, lat))
     }, []);
 
-    //  //const [extendedWeather, setExtendedWeather] = ('');
-    // console.log('weatherObj.dataaaaaaaaaaaaaaa', weatherObj.data.weatherObj.data.main)
+    const extended = weatherObj.extended;
 
     return(
         <div>
@@ -35,13 +31,37 @@ const ShowWeather: any = (weatherObj:any) => {
             <p>
                 <img src={`http://openweathermap.org/img/wn/${weatherObj.data.weather[0].icon}.png`} alt="" />
             </p>
-            <p>temp</p>
-            <p>{weatherObj.data.main.temp}K</p>
-            <p>{fahrenheit}<sup>&#8457;</sup></p>
-            <p>{celsius}<sup>&#8451;</sup></p>
+            <p>temp {celsius}<sup>&#8451;</sup></p>
             <p>humidity: {weatherObj.data.main.humidity}</p>
             <p>pressure: {weatherObj.data.main.pressure}</p>
             <p>wind: {weatherObj.data.wind.speed} m/s</p>
+            
+            <h3>extended weather</h3>
+            <h2>daily</h2>
+            {console.log('extended:::::::::::', extended)}
+            {extended ? extended.daily.map((data:any, key: number) => 
+            <div>
+                <h4>day {key}</h4>
+                <p>temp: day: {data.temp.day}, eve: {data.temp.eve}, max: {data.temp.max}, 
+                min: {data.temp.min}, morn: {data.temp.morn}, night: {data.temp.night} </p>
+                <p>feels like: day:{data.feels_like.day}, eve:{data.feels_like.eve}, 
+                morn: {data.feels_like.morn}, night: {data.feels_like.night}</p>
+                <p>humidity: {data.humidity}</p>
+                <p>pressure: {data.pressure}</p>
+                <p>wind speed: {data.wind_speed}</p>
+                <p>wind_deg: {data.wind_deg}</p>
+                <p>weather: {data.weather[0].main}</p>
+                <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} alt="" />
+            </div>
+            ) : <p>shit</p>}
+            <h2>hourly</h2>
+            {extended ? extended.hourly.map((data:any, key: number) => 
+            <>
+                <h4>{key}</h4>
+                <p>temp: {data.temp}</p>
+                <p>feels like: {data.feels_like}</p>
+            </>
+            ): <p>bela</p>}
 
         </div>
     );
