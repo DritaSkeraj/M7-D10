@@ -12,17 +12,21 @@ const ShowWeather: any = (weatherObj:any) => {
 
      const pos = useSelector((state: any) => state.weather.position);
     //const lat = useSelector((state: any) => state.weather.position[1]);
-    
-     //console.log("pos:::::::", pos)
-    
-     //const [extendedWeather, setExtendedWeather] = ('');
-    //  const dispatch = useDispatch();
+    let lon = 0
+    let lat = 0
+    if(pos){
+         lon = pos[0];
+         lat = pos[1];
+        console.log("lon:::::::", lon, "\nlat::::::::", lat);
+    }
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getExtendedWeather(lon, lat))
+    }, []);
 
-    // useEffect(() => {
-    //     dispatch(getExtendedWeather(lon))
-    //  }, []);
-
+    //  //const [extendedWeather, setExtendedWeather] = ('');
     // console.log('weatherObj.dataaaaaaaaaaaaaaa', weatherObj.data.weatherObj.data.main)
+
     return(
         <div>
             

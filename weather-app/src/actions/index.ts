@@ -29,7 +29,7 @@ export const getWeather = (city: string): ThunkAction<any, any, any, any> => {
 export const getExtendedWeather = (lon:any, lat:any): ThunkAction<any, any, any, any> => {
     return async dispatch => {
         try {
-            const data = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely&appid=${process.env.REACT_APP_API_KEY}`);
+            const data = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely&appid=${process.env.REACT_APP_API_KEY}&units=metric`);
             if(!data.ok) {
                 const res: any = await data.json();
                 throw new Error(res.message)
