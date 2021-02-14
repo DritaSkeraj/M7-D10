@@ -53,7 +53,7 @@ const ShowWeather: any = (weatherObj:any) => {
                 <p>weather: {data.weather[0].main}</p>
                 <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} alt="" />
             </div>
-            ) : <p>shit</p>}
+            ) : <p>...</p>}
             <h2>hourly</h2>
             {extended ? extended.hourly.map((data:any, key: number) => 
             <>
@@ -61,7 +61,7 @@ const ShowWeather: any = (weatherObj:any) => {
                 <p>temp: {data.temp}</p>
                 <p>feels like: {data.feels_like}</p>
             </>
-            ): <p>bela</p>}
+            ): <p>...</p>}
 
         </div>
     );
