@@ -22,6 +22,7 @@ function App() {
       {error && <p style={{'color': 'red'}}>{error}
       </p>}
       </div>
+      {console.log('')}
       
       {/*<div className="slideshow" >
             <div className="slideshow-image" style={{ 
