@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getExtendedWeather} from '../actions/index'
 import store from '../store/index'
-import logo from '../logo.svg'
 import './weather.css'
 
 const ShowWeather: any = (weatherObj:any) => {
